@@ -8,8 +8,8 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'apt-get update'
-                sh 'apt-get install -y pkg-config libmysqlclient-dev'
+                sh 'sudo apt-get update'
+                sh 'sudo apt-get install -y pkg-config libmysqlclient-dev'
                 sh 'python3 -m venv venv'
                 sh './venv/bin/pip install -r requirements.txt'
             }
