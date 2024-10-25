@@ -13,4 +13,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Specify the command to run your app
-CMD ["python", "app.py"]  # or whatever your entry point is
+CMD ["python", "manage.py" ,"runserver","0.0.0.0:8000"]  # or whatever your entry point is
