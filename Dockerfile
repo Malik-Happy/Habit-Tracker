@@ -1,18 +1,16 @@
 FROM python:3
 
+# Set the working directory
+WORKDIR /app
 
-RUN pip -r requirements.txt
+# Copy requirements.txt into the container
+COPY requirements.txt .
 
+# Install the required packages
+RUN pip install -r requirements.txt
 
+# Copy the rest of your application code
 COPY . .
 
-# Run database migrations
-RUN python manage.py migrate
-
-# Expose the port the app runs on
-EXPOSE 8000
-
-# Command to run the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-
-
+# Specify the command to run your app
+CMD ["python", "app.py"]  # or whatever your entry point is
