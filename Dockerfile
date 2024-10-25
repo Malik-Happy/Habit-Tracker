@@ -5,12 +5,13 @@ FROM python:3.9-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Install system dependencies
+# Install system dependencies, including SQLite3
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     nginx \
     pkg-config \
     default-libmysqlclient-dev \
+    sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
