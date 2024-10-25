@@ -2,12 +2,16 @@
 FROM python:3.9-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Install dependencies
-CMD sudo apt install nginx -y
-
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    nginx \
+    pkg-config \
+    default-libmysqlclient-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
@@ -16,7 +20,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project code
 COPY . .
@@ -25,9 +29,7 @@ COPY . .
 EXPOSE 8000
 
 # Run migrations
-RUN python manage.py migrate
+RUN ["python", "manage.py", "migrate"]
 
-# Run command
+# Run the application
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-
-
