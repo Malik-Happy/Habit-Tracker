@@ -6,9 +6,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Install dependencies
-RUN apt update && apt install -y \
-    libpq-dev \
-    nginx
+RUN sudo apt install nginx -y
+
 
 # Set working directory
 WORKDIR /app
