@@ -1,13 +1,10 @@
 FROM python:3
 
-# Set the working directory
-WORKDIR  /var/lib/jenkins/workspace/habitapp
 
-# Copy requirements.txt into the image
-COPY requirements.txt .
+RUN pip pip install Django==4.1 django-crispy-forms fontawesomefree==6.5.1 django_extensions==3.2.3 pyodbc==5.0.1 SQLAlchemy==2.0.25 sqlparse==0.4.4 mysqlclient==2.2.4 typing_extensions==4.9.0 tzdata==2023.3 numpy==1.26.4 pytest-django==4.8.0 coverage==7.5.1 freezegun==1.5.1
 
-# Install the dependencies
-RUN pip install -r requirements.txt
+
+COPY . .
 
 # Run database migrations
 RUN python manage.py migrate
