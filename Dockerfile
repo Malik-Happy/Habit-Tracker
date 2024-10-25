@@ -6,6 +6,9 @@ WORKDIR /app
 # Copy requirements.txt into the container
 COPY requirements.txt .
 
+# Upgrade pip to the latest version
+RUN pip install --upgrade pip
+
 # Install the required packages
 RUN pip install -r requirements.txt
 
@@ -13,4 +16,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Specify the command to run your app
-CMD ["python", "manage.py" ,"runserver","0.0.0.0:8000"]  # or whatever your entry point is
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]  # or whatever your entry point is
