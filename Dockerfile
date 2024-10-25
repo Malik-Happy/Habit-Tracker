@@ -1,10 +1,13 @@
-# Use the official Python image as a base
 FROM python:3
 
+# Set the working directory
+WORKDIR  /var/lib/jenkins/workspace/habitapp
+
+# Copy requirements.txt into the image
+COPY requirements.txt .
+
+# Install the dependencies
 RUN pip install -r requirements.txt
-
-
-COPY . .
 
 # Run database migrations
 RUN python manage.py migrate
@@ -14,3 +17,5 @@ EXPOSE 8000
 
 # Command to run the application
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+
