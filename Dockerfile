@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Install dependencies
-RUN sudo apt install nginx -y
+CMD sudo apt install nginx -y
 
 
 # Set working directory
